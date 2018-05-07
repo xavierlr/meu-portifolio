@@ -22,5 +22,14 @@ Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
 episodes = read_csv(here(&amp;quot;data/series_from_imdb.csv&amp;quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&amp;gt;% filter(series_name %in% c(&amp;quot;Chuck&amp;quot;,&amp;quot;Grimm&amp;quot;, &amp;quot;Elementary&amp;quot;, &amp;quot;Cold Case&amp;quot;, &amp;quot;Covert Affairs&amp;quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; ## 1 Grimm Pilot 1.</description>
     </item>
     
+    <item>
+      <title></title>
+      <link>/1/01/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/1/01/</guid>
+      <description>Laboratório 1 - CheckPoint 3            code{white-space: pre;} pre:not([class]) { background-color: white; }  if (window.hljs) { hljs.configure({languages: []}); hljs.initHighlightingOnLoad(); if (document.readyState &amp;&amp; document.readyState === &#34;complete&#34;) { window.setTimeout(function() { hljs.initHighlighting(); }, 0); } }  h1 { font-size: 34px; } h1.title { font-size: 38px; } h2 { font-size: 30px; } h3 { font-size: 24px; } h4 { font-size: 18px; } h5 { font-size: 16px; } h6 { font-size: 12px; } .</description>
+    </item>
+    
   </channel>
 </rss>
