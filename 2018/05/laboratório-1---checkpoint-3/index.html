@@ -1,0 +1,783 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+  
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.40.2 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Laboratório 1 - CheckPoint 3</title>
+    <meta name="author" content="Lucas Xavier">
+    <meta name="keywords" content="">
+
+    <link rel="icon" href="/favicon.png">
+    
+
+    
+    <meta name="description" content="Analisaremos os episódios das series Grimm e Elementary.
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+episodes = read_csv(here(&quot;data/series_from_imdb.csv&quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&gt;% filter(series_name %in% c(&quot;Chuck&quot;,&quot;Grimm&quot;, &quot;Elementary&quot;, &quot;Cold Case&quot;, &quot;Covert Affairs&quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; ## 1 Grimm Pilot 1.">
+    <meta property="og:description" content="Analisaremos os episódios das series Grimm e Elementary.
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+episodes = read_csv(here(&quot;data/series_from_imdb.csv&quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&gt;% filter(series_name %in% c(&quot;Chuck&quot;,&quot;Grimm&quot;, &quot;Elementary&quot;, &quot;Cold Case&quot;, &quot;Covert Affairs&quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; ## 1 Grimm Pilot 1.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Laboratório 1 - CheckPoint 3">
+    <meta property="og:url" content="/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+    <meta property="og:site_name" content="Hugo tranquilpeak theme">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Hugo tranquilpeak theme">
+    <meta name="twitter:description" content="Analisaremos os episódios das series Grimm e Elementary.
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+episodes = read_csv(here(&quot;data/series_from_imdb.csv&quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&gt;% filter(series_name %in% c(&quot;Chuck&quot;,&quot;Grimm&quot;, &quot;Elementary&quot;, &quot;Cold Case&quot;, &quot;Covert Affairs&quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; ## 1 Grimm Pilot 1.">
+    
+    
+
+    
+    
+
+    
+      <meta property="og:image" content="//www.gravatar.com/avatar/0e40d77d331f6b6eb7b80e03ea9c6a47?s=640">
+    
+
+    
+    
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">Hugo tranquilpeak theme</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="//www.gravatar.com/avatar/0e40d77d331f6b6eb7b80e03ea9c6a47?s=90" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="/#about">
+          <img class="sidebar-profile-picture" src="//www.gravatar.com/avatar/0e40d77d331f6b6eb7b80e03ea9c6a47?s=110" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Lucas Xavier</h4>
+        
+          <h5 class="sidebar-profile-bio">Graduando em Ciências da Computação</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/kakawait">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/kakawait">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Laboratório 1 - CheckPoint 3
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2018-05-03T00:00:00Z">
+        
+  May 3, 2018
+
+      </time>
+    
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Analisaremos os episódios das series Grimm e Elementary.</p>
+<p>Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?</p>
+<pre class="r"><code>episodes = read_csv(here(&quot;data/series_from_imdb.csv&quot;), 
+                    progress = FALSE,
+                    col_types = cols(.default = col_double(), 
+                                     series_name = col_character(), 
+                                     episode = col_character(), 
+                                     url = col_character(),
+                                     season = col_character()))
+    series = episodes %&gt;% filter(series_name %in% c(&quot;Chuck&quot;,&quot;Grimm&quot;, &quot;Elementary&quot;, &quot;Cold Case&quot;, &quot;Covert Affairs&quot;))
+    series</code></pre>
+<pre><code>## # A tibble: 565 x 18
+##    series_name episode    series_ep season season_ep url       user_rating
+##    &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;
+##  1 Grimm       Pilot             1. 1             1. http://w…        8.10
+##  2 Grimm       Bears Wil…        2. 1             2. http://w…        7.80
+##  3 Grimm       BeeWare           3. 1             3. http://w…        7.90
+##  4 Grimm       Lonelyhea…        4. 1             4. http://w…        8.00
+##  5 Grimm       Danse Mac…        5. 1             5. http://w…        8.20
+##  6 Grimm       The Three…        6. 1             6. http://w…        8.30
+##  7 Grimm       Let Your …        7. 1             7. http://w…        8.20
+##  8 Grimm       Game Ogre         8. 1             8. http://w…        8.40
+##  9 Grimm       Of Mouse …        9. 1             9. http://w…        8.00
+## 10 Grimm       Organ Gri…       10. 1            10. http://w…        8.40
+## # ... with 555 more rows, and 11 more variables: user_votes &lt;dbl&gt;,
+## #   r1 &lt;dbl&gt;, r2 &lt;dbl&gt;, r3 &lt;dbl&gt;, r4 &lt;dbl&gt;, r5 &lt;dbl&gt;, r6 &lt;dbl&gt;, r7 &lt;dbl&gt;,
+## #   r8 &lt;dbl&gt;, r9 &lt;dbl&gt;, r10 &lt;dbl&gt;</code></pre>
+<div id="quantas-avaliacoes-temos-por-episodio" class="section level2">
+<h2>Quantas avaliações temos por episódio?</h2>
+<p>Cada episódio foi avaliado por um número diferente de usuários do IMDB. Vejamos como é essa distribuição.</p>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes(x = season, y = user_votes, color = series_name)) +
+    geom_violin() + 
+    geom_jitter(width = .07) </code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes(x = season_ep, y = user_votes, color = series_name))  + 
+    geom_line() + 
+    facet_wrap(~ season)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>A quantidade de avaliações varia bastante. Exceto pelo primeiro episódio, os episódios da segunda temporada tem muito menos avaliações. Talvez porque os dados foram coletados logo depois que a segunda temporada foi lançada.</p>
+</div>
+<div id="qual-a-distribuicao-da-avaliacao-dos-episodios" class="section level2">
+<h2>Qual a distribuição da avaliação dos episódios?</h2>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes((x = series_name), y = user_rating, color = series_name)) + 
+    geom_jitter(width = .05) +
+    ylim(5, 10) + 
+    labs(x = &quot;Episódios&quot;, y = &quot;Avaliação no IMDB&quot;)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes(x =user_rating)) + 
+    geom_histogram(binwidth = .5, fill = &quot;pink&quot;, color = &quot;black&quot;) + 
+    geom_rug(alpha = .5, size = 1.2)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<pre class="r"><code>sumarios = series %&gt;% 
+    summarise(mediana = median(user_rating), 
+              media = mean(user_rating))
+
+series %&gt;% 
+    ggplot(aes(x = user_rating)) + 
+    geom_histogram(binwidth = .5, fill = &quot;white&quot;, color = &quot;black&quot;) + 
+    geom_vline(xintercept = sumarios$media, color = &quot;darkorange&quot;) + 
+    geom_vline(xintercept = sumarios$mediana, color = &quot;brown&quot;) </code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div id="qual-e-esse-episodio-pior-avaliado" class="section level3">
+<h3>Qual é esse episódio pior avaliado?</h3>
+<pre class="r"><code>series %&gt;% 
+    filter(user_rating == min(user_rating))</code></pre>
+<pre><code>## # A tibble: 1 x 18
+##   series_name episode   series_ep season season_ep url         user_rating
+##   &lt;chr&gt;       &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt; &lt;chr&gt;             &lt;dbl&gt;
+## 1 Elementary  Moving T…      118. 5            22. http://www…        6.50
+## # ... with 11 more variables: user_votes &lt;dbl&gt;, r1 &lt;dbl&gt;, r2 &lt;dbl&gt;,
+## #   r3 &lt;dbl&gt;, r4 &lt;dbl&gt;, r5 &lt;dbl&gt;, r6 &lt;dbl&gt;, r7 &lt;dbl&gt;, r8 &lt;dbl&gt;, r9 &lt;dbl&gt;,
+## #   r10 &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="qual-a-piormelhor-temporada-segundo-o-imdb" class="section level2">
+<h2>Qual a pior/melhor temporada segundo o IMDB?</h2>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes(x = series_ep, y = user_rating, group = series_name, color = season)) +
+    geom_line() + 
+    facet_grid(. ~ series_name)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div id="ha-padroes-na-avaliacao-ao-longo-do-tempo" class="section level3">
+<h3>Há padrões na avaliação ao longo do tempo?</h3>
+<pre class="r"><code>series %&gt;% 
+  ggplot(aes(x = season_ep, y = user_rating, color = season)) + 
+  geom_line() + 
+  geom_point() </code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Correlações</p>
+<pre class="r"><code>series %&gt;% 
+    group_by(season) %&gt;% 
+    summarise(correlacao_linear = cor(season_ep, user_rating, 
+                                      method = &quot;pearson&quot;), 
+              correlacao_kendall = cor(season_ep, user_rating, 
+                                       method = &quot;kendall&quot;))</code></pre>
+<pre><code>## # A tibble: 7 x 3
+##   season correlacao_linear correlacao_kendall
+##   &lt;chr&gt;              &lt;dbl&gt;              &lt;dbl&gt;
+## 1 1                0.362               0.249 
+## 2 2                0.193               0.104 
+## 3 3                0.0770              0.0417
+## 4 4               -0.00238            -0.0492
+## 5 5               -0.0266              0.0274
+## 6 6               -0.235              -0.184 
+## 7 7                0.474               0.340</code></pre>
+</div>
+</div>
+<div id="qual-o-episodio-mais-detestado" class="section level2">
+<h2>Qual o episódio mais detestado?</h2>
+<pre class="r"><code>series %&gt;% 
+    ggplot(aes(x = season_ep, y = r1, color = season)) + 
+    geom_line() + 
+    scale_x_continuous(breaks = 1:22)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div id="e-amado" class="section level3">
+<h3>E amado?</h3>
+<pre class="r"><code>series %&gt;%
+    ggplot(aes(x = season_ep, y = r10, color = season)) +
+    geom_line() +
+    scale_x_continuous(breaks = 1:22)</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+</div>
+<div id="dentre-todas-as-series-qual-a-mais-bem-avaliada" class="section level2">
+<h2>4 - Dentre todas as séries, qual a mais bem avaliada ?</h2>
+<pre class="r"><code>series2 &lt;- series %&gt;% 
+    group_by(series_name, season) %&gt;% 
+        summarize(media_temporada = mean(user_rating))
+
+series3 &lt;- series2 %&gt;% 
+    group_by(series_name, season) %&gt;% 
+        summarize(media_serie = mean(media_temporada))
+
+series %&gt;% 
+    group_by(series_name, season) %&gt;% 
+        summarize(media_temporada = mean(user_rating))</code></pre>
+<pre><code>## # A tibble: 28 x 3
+## # Groups:   series_name [?]
+##    series_name season media_temporada
+##    &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;
+##  1 Chuck       1                 8.35
+##  2 Chuck       2                 8.79
+##  3 Chuck       3                 8.94
+##  4 Chuck       4                 8.62
+##  5 Chuck       5                 8.57
+##  6 Cold Case   1                 7.86
+##  7 Cold Case   2                 8.11
+##  8 Cold Case   3                 8.07
+##  9 Cold Case   4                 8.16
+## 10 Cold Case   5                 8.12
+## # ... with 18 more rows</code></pre>
+<pre class="r"><code>series2 %&gt;% 
+    group_by(series_name) %&gt;% 
+        summarize(media_serie = mean(media_temporada))</code></pre>
+<pre><code>## # A tibble: 5 x 2
+##   series_name    media_serie
+##   &lt;chr&gt;                &lt;dbl&gt;
+## 1 Chuck                 8.65
+## 2 Cold Case             8.06
+## 3 Covert Affairs        8.17
+## 4 Elementary            8.18
+## 5 Grimm                 8.61</code></pre>
+<pre class="r"><code>series2 %&gt;% 
+    ggplot(aes(x = as.numeric(season), y = media_temporada, color = series_name ))  + 
+    geom_line()</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-13-1.png" width="672" /> ## De acordo com o gráfico apresentado acima, a série Chuck, tem a maior quantidade de avaliações positivas durante as temporadas, baseado nas médias obtidas pelos episódios. É possivel ver que a linha que acompanha a média da série se encontra mais elevada que as demais, fornecendo assim um gráfico de satisfação superior as outras.</p>
+</div>
+<div id="qual-temporada-gerou-menos-consenso-sobre-sua-qualidade" class="section level2">
+<h2>5 - Qual temporada gerou menos consenso sobre sua qualidade?</h2>
+<pre class="r"><code>series4 &lt;- series %&gt;% 
+    group_by(series_name, season) %&gt;% 
+        summarize(max_temporada = max(user_rating), min_temporada = min(user_rating))
+
+
+series4 &lt;-series4 %&gt;% mutate(estatistica = max_temporada - min_temporada)
+
+series4 %&gt;%
+    ggplot(aes(x = season, y = estatistica, color = series_name, group = series_name)) + 
+    geom_line()</code></pre>
+<p><img src="/post/LAB1/reports/eda-sense8_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+</div>
+<div id="para-responder-essa-pergunta-foi-necessario-calcular-a-diferenca-da-maior-avaliacao-e-menor-avaliacao-de-cada-temporada-e-de-cada-serie.-feito-isso-e-possivel-enxergar-que-dentre-todas-as-series-e-temporadas-a-que-possui-o-maior-nivel-de-discordancia-foi-a-5-temporada-de-elementary.-isso-mostra-que-a-serie-foi-inconstante-durante-a-recorrente-temporada-e-a-partir-desses-dados-podemos-buscar-saber-se-a-quantidade-de-votos-diminuiram-ou-aumentaram-recorrente-a-esse-inconstancia." class="section level2">
+<h2>Para responder essa pergunta, foi necessário calcular a diferença da maior avaliação e menor avaliação de cada temporada e de cada série. Feito isso, é possivel enxergar que dentre todas as séries e temporadas, a que possui o maior nivel de discordância, foi a 5º temporada de Elementary. Isso mostra que a série foi inconstante durante a recorrente temporada, e a partir desses dados, podemos buscar saber se a quantidade de votos diminuiram ou aumentaram recorrente a esse inconstância.</h2>
+</div>
+<div id="a-avaliacao-das-temporadas-das-series-tem-relacao-com-a-quantidade-de-votos-obtidas-por-temporada" class="section level2">
+<h2>5.1 - A avaliação das temporadas das séries tem relação com a quantidade de votos obtidas por temporada?</h2>
+<pre class="r"><code>series6 &lt;- series %&gt;% 
+    group_by(series_name) %&gt;% 
+        summarize(media_temporada = mean(user_rating), soma_de_votos = sum(user_votes))
+
+series %&gt;%  
+    group_by(series_name) %&gt;% 
+        summarize(media_temporada = mean(user_rating), soma_de_votos = sum(user_votes))</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   series_name    media_temporada soma_de_votos
+##   &lt;chr&gt;                    &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Chuck                     8.68        77094.
+## 2 Cold Case                 8.06        19404.
+## 3 Covert Affairs            8.20        10536.
+## 4 Elementary                8.18        63863.
+## 5 Grimm                     8.61        73568.</code></pre>
+</div>
+<div id="e-possivel-observar-que-series-que-possuem-uma-melhor-avaliacao-tambem-possuem-a-maior-quantidade-de-votos-mas-em-casos-raros-como-em-elementary-temos-uma-grande-quantidade-de-votos-e-uma-avaliacao-abaixo-do-esperado." class="section level2">
+<h2>É possivel observar que séries que possuem uma melhor avaliação, também possuem a maior quantidade de votos, mas em casos raros, como em Elementary temos uma grande quantidade de votos e uma avaliação abaixo do esperado.</h2>
+</div>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2018 Lucas Xavier. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=%2F2018%2F05%2Flaborat%25C3%25B3rio-1---checkpoint-3%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=%2F2018%2F05%2Flaborat%25C3%25B3rio-1---checkpoint-3%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=%2F2018%2F05%2Flaborat%25C3%25B3rio-1---checkpoint-3%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="//www.gravatar.com/avatar/0e40d77d331f6b6eb7b80e03ea9c6a47?s=110" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Lucas Xavier</h4>
+    
+      <div id="about-card-bio">Graduando em Ciências da Computação</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Estudante
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Brasil
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="/2018/05/laborat%C3%B3rio-1---checkpoint-3/">
+                <h3 class="media-heading">Laboratório 1 - CheckPoint 3</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  May 5, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather">Analisaremos os episódios das series Grimm e Elementary.
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+episodes = read_csv(here(&quot;data/series_from_imdb.csv&quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&gt;% filter(series_name %in% c(&quot;Chuck&quot;,&quot;Grimm&quot;, &quot;Elementary&quot;, &quot;Cold Case&quot;, &quot;Covert Affairs&quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; ## 1 Grimm Pilot 1.</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         1 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('/images/cover.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = '\/2018\/05\/laborat%C3%B3rio-1---checkpoint-3\/';
+          
+            this.page.identifier = '\/2018\/05\/laborat%C3%B3rio-1---checkpoint-3\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'hugo-tranquilpeak-theme';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

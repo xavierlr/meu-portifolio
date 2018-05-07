@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hugo tranquilpeak theme</title>
+    <link>/</link>
+    <description>Recent content on Hugo tranquilpeak theme</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 03 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Laboratório 1 - CheckPoint 3</title>
+      <link>/2018/05/laborat%C3%B3rio-1---checkpoint-3/</link>
+      <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/laborat%C3%B3rio-1---checkpoint-3/</guid>
+      <description>Analisaremos os episódios das series Grimm e Elementary.
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+episodes = read_csv(here(&amp;quot;data/series_from_imdb.csv&amp;quot;), progress = FALSE, col_types = cols(.default = col_double(), series_name = col_character(), episode = col_character(), url = col_character(), season = col_character())) series = episodes %&amp;gt;% filter(series_name %in% c(&amp;quot;Chuck&amp;quot;,&amp;quot;Grimm&amp;quot;, &amp;quot;Elementary&amp;quot;, &amp;quot;Cold Case&amp;quot;, &amp;quot;Covert Affairs&amp;quot;)) series ## # A tibble: 565 x 18 ## series_name episode series_ep season season_ep url user_rating ## &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;dbl&amp;gt; ## 1 Grimm Pilot 1.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,209 @@
+---
+title: "Laboratório 1 - CheckPoint 3"
+author: "Lucas Rodrigues Xavier"
+date: "2018-05-03"
+output:
+  html_document:
+    df_print: paged
+    toc: yes
+    toc_float: yes
+  html_notebook:
+    toc: yes
+    toc_float: yes
+---
+
+```{r setup, echo=FALSE, warning=FALSE, message=FALSE}
+library(tidyverse)
+library(here)
+theme_set(theme_bw())
+```
+
+Analisaremos os episódios das series Grimm e Elementary. 
+
+Houve duas temporadas: quais foram os melhores episódios? A melhor temporada?
+
+```{r}
+episodes = read_csv(here("data/series_from_imdb.csv"), 
+                    progress = FALSE,
+                    col_types = cols(.default = col_double(), 
+                                     series_name = col_character(), 
+                                     episode = col_character(), 
+                                     url = col_character(),
+                                     season = col_character()))
+    series = episodes %>% filter(series_name %in% c("Chuck","Grimm", "Elementary", "Cold Case", "Covert Affairs"))
+    series
+    
+```
+
+## Quantas avaliações temos por episódio? 
+
+Cada episódio foi avaliado por um número diferente de usuários do IMDB. Vejamos como é essa distribuição. 
+
+```{r}
+series %>% 
+    ggplot(aes(x = season, y = user_votes, color = series_name)) +
+    geom_violin() + 
+    geom_jitter(width = .07) 
+```
+
+
+```{r}
+series %>% 
+    ggplot(aes(x = season_ep, y = user_votes, color = series_name))  + 
+    geom_line() + 
+    facet_wrap(~ season)
+               
+```
+
+A quantidade de avaliações varia bastante. Exceto pelo primeiro episódio, os episódios da segunda temporada tem muito menos avaliações. Talvez porque os dados foram coletados logo depois que a segunda temporada foi lançada. 
+
+## Qual a distribuição da avaliação dos episódios?
+
+```{r}
+series %>% 
+    ggplot(aes((x = series_name), y = user_rating, color = series_name)) + 
+    geom_jitter(width = .05) +
+    ylim(5, 10) + 
+    labs(x = "Episódios", y = "Avaliação no IMDB")
+```
+
+```{r}
+series %>% 
+    ggplot(aes(x =user_rating)) + 
+    geom_histogram(binwidth = .5, fill = "pink", color = "black") + 
+    geom_rug(alpha = .5, size = 1.2)
+
+```
+
+```{r}
+sumarios = series %>% 
+    summarise(mediana = median(user_rating), 
+              media = mean(user_rating))
+
+series %>% 
+    ggplot(aes(x = user_rating)) + 
+    geom_histogram(binwidth = .5, fill = "white", color = "black") + 
+    geom_vline(xintercept = sumarios$media, color = "darkorange") + 
+    geom_vline(xintercept = sumarios$mediana, color = "brown") 
+```
+
+### Qual é esse episódio pior avaliado? 
+
+```{r}
+series %>% 
+    filter(user_rating == min(user_rating))
+```
+
+
+## Qual a pior/melhor temporada segundo o IMDB?
+
+```{r}
+series %>% 
+    ggplot(aes(x = series_ep, y = user_rating, group = series_name, color = season)) +
+    geom_line() + 
+    facet_grid(. ~ series_name)
+    
+```
+
+
+### Há padrões na avaliação ao longo do tempo?
+
+```{r}
+series %>% 
+  ggplot(aes(x = season_ep, y = user_rating, color = season)) + 
+  geom_line() + 
+  geom_point() 
+```
+
+Correlações
+
+```{r}
+series %>% 
+    group_by(season) %>% 
+    summarise(correlacao_linear = cor(season_ep, user_rating, 
+                                      method = "pearson"), 
+              correlacao_kendall = cor(season_ep, user_rating, 
+                                       method = "kendall"))
+
+```
+
+## Qual o episódio mais detestado? 
+
+```{r}
+series %>% 
+    ggplot(aes(x = season_ep, y = r1, color = season)) + 
+    geom_line() + 
+    scale_x_continuous(breaks = 1:22)
+```
+
+### E amado? 
+
+```{r}
+series %>%
+    ggplot(aes(x = season_ep, y = r10, color = season)) +
+    geom_line() +
+    scale_x_continuous(breaks = 1:22)
+```
+
+## 4 - Dentre todas as séries, qual a mais bem avaliada ?
+
+```{r}
+series2 <- series %>% 
+    group_by(series_name, season) %>% 
+        summarize(media_temporada = mean(user_rating))
+
+series3 <- series2 %>% 
+    group_by(series_name, season) %>% 
+        summarize(media_serie = mean(media_temporada))
+
+series %>% 
+    group_by(series_name, season) %>% 
+        summarize(media_temporada = mean(user_rating))
+
+series2 %>% 
+    group_by(series_name) %>% 
+        summarize(media_serie = mean(media_temporada))
+
+series2 %>% 
+    ggplot(aes(x = as.numeric(season), y = media_temporada, color = series_name ))  + 
+    geom_line()
+```
+## De acordo com o gráfico apresentado acima, a série Chuck, tem a maior quantidade de avaliações positivas durante as temporadas, baseado nas médias obtidas pelos episódios. É possivel ver que a linha que acompanha a média da série se encontra mais elevada que as demais, fornecendo assim um gráfico de satisfação superior as outras.
+
+
+## 5 - Qual temporada gerou menos consenso sobre sua qualidade?
+
+```{r}
+
+series4 <- series %>% 
+    group_by(series_name, season) %>% 
+        summarize(max_temporada = max(user_rating), min_temporada = min(user_rating))
+
+
+series4 <-series4 %>% mutate(estatistica = max_temporada - min_temporada)
+
+series4 %>%
+    ggplot(aes(x = season, y = estatistica, color = series_name, group = series_name)) + 
+    geom_line()
+
+
+```
+
+## Para responder essa pergunta, foi necessário calcular a diferença da maior avaliação e menor avaliação de cada temporada e de cada série. Feito isso, é possivel enxergar que dentre todas as séries e temporadas, a que possui o maior nivel de discordância, foi a 5º temporada de Elementary. Isso mostra que a série foi inconstante durante a recorrente temporada, e a partir desses dados, podemos buscar saber se a quantidade de votos diminuiram ou aumentaram recorrente a esse inconstância.
+
+
+## 5.1 - A avaliação das temporadas das séries tem relação com a quantidade de votos obtidas por temporada?
+
+```{r}
+series6 <- series %>% 
+    group_by(series_name) %>% 
+        summarize(media_temporada = mean(user_rating), soma_de_votos = sum(user_votes))
+
+series %>%  
+    group_by(series_name) %>% 
+        summarize(media_temporada = mean(user_rating), soma_de_votos = sum(user_votes))
+
+```
+
+
+## É possivel observar que séries que possuem uma melhor avaliação, também possuem a maior quantidade de votos, mas em casos raros, como em Elementary temos uma grande quantidade de votos e uma avaliação abaixo do esperado.
